@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>Admin Home</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/adminx.css')}}" media="screen" />
+	
+	<link rel="stylesheet" type="text/css" href="{{asset('css/AdminHome.css')}}">
+   @yield('csslinks')
+</head>
+<body>
+
+	
+
+	 <div class="adminx-container">
+      <nav class="navbar navbar-expand justify-content-between fixed-top">
+        <a class="navbar-brand mb-0 h1 d-none d-md-block" href="index.html">
+          <img src="./demo/img/logo.png" class="navbar-brand-image d-inline-block align-top mr-2" alt="">
+           {{ request()->session()->get('user')->type }}! 
+    {{ request()->session()->get('user')->Full_Name }}
+        </a>
+
+        <form method="post" class="form-inline form-quicksearch d-none d-md-block mx-auto">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-icon">
+                <i data-feather="search"></i> 
+              </div>
+            </div>
+            <input type="text" class="form-control" id="userid" placeholder="Type to search...">
+            <button onclick="window.location.href = 'https://w3docs.com';">Go</button>
+          </div>
+
+
+          <div id="searchresult"> </div>
+        </form>
+
+        <script type="text/javascript">
+      $(document).ready(function(){
+          
+ $("#userid").keyup(function(){
+          var userid= $("#userid").val();
+
+          userModel.searchbyuserid(userid, function(result){
+    if(result[0]){
+      $("#searchresult").text($("#userid").val());
+    }else{
+      $("#searchresult").text("no id found");
+    }
+  });
+    
+  });
+
+});
+
+        </script>
+
+        <div class="d-flex flex-1 d-block d-md-none">
+          <a href="#" class="sidebar-toggle ml-3">
+            <i data-feather="menu"></i>
+          </a>
+        </div>
+
+        <ul class="navbar-nav d-flex justify-content-end mr-2">
+          <!-- Notificatoins -->
+          <li class="nav-item dropdown d-flex align-items-center mr-2">
+            <a class="nav-link nav-link-notifications" id="dropdownNotifications" data-toggle="dropdown" href="#">
+              <i data-feather="bell"></i>
+              <span class="nav-link-notification-number">3</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-notifications" aria-labelledby="dropdownNotifications">
+              <div class="notifications-header d-flex justify-content-between align-items-center">
+                <span class="notifications-header-title">
+                  Notifications
+                </span>
+                <a href="#" class="d-flex"><small>Mark all as read</small></a>
+              </div>
+
+              <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action unread">
+                  <p class="mb-1">An Official <strong>Mr.X</strong> sent <strong>you a</strong> message </p>
+
+                 
+
+                  <small>1 hour ago</small>
+                </a>
+
+               
+              </div>
+
+              <div class="notifications-footer text-center">
+                <a href="#"><small>View all notifications</small></a>
+              </div>
+            </div>
+          </li>
+          <!-- Notifications -->
+          <li class="nav-item dropdown">
+            <a class="nav-link avatar-with-name" id="navbarDropdownMenuLink" data-toggle="dropdown" href="#">
+              <img src="{{asset('images/myimage1.jpg')}}" class="d-inline-block align-top" alt="">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="AdminHome/profile1">My Profile</a>
+             
+             
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item text-danger" href="/logout">Sign out</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- expand-hover push -->
+      <!-- Sidebar -->
+      <div class="adminx-sidebar expand-hover push">
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item">
+            <a href="/AdminHome" class="sidebar-nav-link active">
+              <span class="sidebar-nav-icon">
+                <i data-feather="home"></i>
+              </span>
+              <span class="sidebar-nav-name">
+                Dashboard
+              </span>
+              <span class="sidebar-nav-end">
+
+              </span>
+            </a>
+          </li>
+
+         
+
+
+          <li class="sidebar-nav-item">
+            <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#example" aria-expanded="false" aria-controls="example">
+              <span class="sidebar-nav-icon">
+                <i data-feather="user"></i>
+              </span>
+              <span class="sidebar-nav-name">
+                Users
+              </span>
+              <span class="sidebar-nav-end">
+                <i data-feather="chevron-right" class="nav-collapse-icon"></i>
+              </span>
+            </a>
+
+            <ul class="sidebar-sub-nav collapse" id="example">
+              <li class="sidebar-nav-item">
+                <a href="{{route('admin.student')}}" class="sidebar-nav-link" >
+                  <span class="sidebar-nav-abbr">
+                    S
+                  </span>
+                  <span class="sidebar-nav-name">
+                    Students
+                  </span>
+                </a>
+              </li>
+
+              <li class="sidebar-nav-item">
+                <a href="{{route('admin.teacher')}}" class="sidebar-nav-link">
+                  <span class="sidebar-nav-abbr">
+                    T
+                  </span>
+                  <span class="sidebar-nav-name">
+                    Teachers
+                  </span>
+                </a>
+              </li>
+             
+              <li class="sidebar-nav-item">
+                <a href="{{route('admin.admin')}}" class="sidebar-nav-link">
+                  <span class="sidebar-nav-abbr">
+                    A
+                  </span>
+                  <span class="sidebar-nav-name">
+                    Admins
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="sidebar-nav-item">
+            <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#navUI" aria-expanded="false" aria-controls="navUI">
+              <span class="sidebar-nav-icon">
+                <i data-feather="grid"></i>
+              </span>
+              <span class="sidebar-nav-name">
+                Others
+              </span>
+              <span class="sidebar-nav-end">
+                    <i data-feather="chevron-right" class="nav-collapse-icon"></i>
+              </span>
+            </a>
+
+            <ul class="sidebar-sub-nav collapse" id="navUI">
+             
+                <li class="sidebar-nav-item">
+                <a href="AdminHome/analysis" class="sidebar-nav-link">
+                  <span class="sidebar-nav-abbr">
+                    An
+                  </span>
+                  <span class="sidebar-nav-name">
+                    Analytics
+                  </span>
+                </a>
+              </li>
+
+               <li class="sidebar-nav-item">
+                <a href="AdminHome/changepass" class="sidebar-nav-link">
+                  <span class="sidebar-nav-abbr">
+                    An
+                  </span>
+                  <span class="sidebar-nav-name">
+                    Change Password
+                  </span>
+                </a>
+              </li>
+
+              
+            </ul>
+          </li>
+
+          <li class="sidebar-nav-item">
+             <a href="/logout" class="sidebar-nav-link">
+              <span class="sidebar-nav-icon">
+               
+              </span>
+              <span class="sidebar-nav-name">
+                Log Out
+              </span>
+            
+            </a>
+
+      </div><!-- Sidebar End -->
+
+      <!-- adminx-content-aside -->
+      <div class="adminx-content">
+        <!-- <div class="adminx-aside">
+
+        </div> -->
+
+        <div class="adminx-main-content">
+          <div class="container-fluid">
+            <!-- BreadCrumb -->
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb adminx-page-breadcrumb">
+                <li class="breadcrumb-item"><a href="/AdminHome">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+              </ol>
+            </nav>
+
+            @yield('table')
+
+        
+<script type="text/javascript"  src="{{asset('js/jquery-3.4.1.js')}}"></script>
+  <script type="text/javascript"  src="{{asset('js/user-model.js')}}"></script>
+      
+    <!-- If you prefer jQuery these are the required scripts -->
+
+    @yield('jsscripts')
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+    <script src="{{asset('js/vendor.js')}}"></script>
+    <script src="{{asset('js/adminx.js')}}"></script>
+    
+	<script src="{{asset('js/jquery.js')}}"></script>
+	<script src="{{asset('js/search.js')}}"></script>
+    <!-- If you prefer vanilla JS these are the only required scripts -->
+    <!-- script src="./dist/js/vendor.js"></script>
+    <script src="./dist/js/adminx.vanilla.js"></script-->
+	
+</body>
+</html>
