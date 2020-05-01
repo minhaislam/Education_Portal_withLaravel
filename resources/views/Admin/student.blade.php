@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-sm-8"><h2>Student <b>Details</b></h2></div>
                     <div class="col-sm-4">
-                        <button onclick="window.location.href = '';" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                        <button onclick="window.location.href = '{{route('admin.addnew1')}}';" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
                     </div>
                     
                     

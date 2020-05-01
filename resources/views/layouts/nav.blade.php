@@ -253,6 +253,7 @@
             </nav>
 
             @yield('table')
+            @yield('addform')
 
         
 <script type="text/javascript"  src="{{asset('js/jquery-3.4.1.js')}}"></script>
