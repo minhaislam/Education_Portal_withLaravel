@@ -52,9 +52,9 @@
 			<td>{{ $teacher->password }}</td>
 			<td>{{ $teacher->type }}</td>
 			<td>
-				<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a href="" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+				
+                            <a href="{{route('admin.edit2', $teacher->id)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a href="{{route('admin.delete2', $teacher->id)}}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
 
                              <a href="" class="profile" title="profile" data-toggle="tooltip"><i class="material-icons">&#xE815;</i></a>
 			</td>

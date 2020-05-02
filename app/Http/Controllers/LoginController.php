@@ -23,9 +23,13 @@ class LoginController extends Controller
         
         if($user != null){
             $req->session()->put('user',$user);
+            //$countadmin=DB::table('users')->where('type','admin')->count();
+            $countadmin = user::where('type','admin')->count();
+            $countstudent=user::where('type','student')->count();
+            $countteacher=user::where('type','teacher')->count();
         	if($user->type=='admin'){
-        		// print($user);                 
-                return redirect()->route('admin.index');
+        		 //print($countadmin);                 
+                return redirect()->route('admin.index',['totaladmin'=> $countadmin,'totalstudent'=> $countstudent,'totalteacher'=> $countteacher]);
         	}
         	elseif($user->type=='scout'){   
 

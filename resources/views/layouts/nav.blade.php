@@ -16,7 +16,7 @@
 
 	 <div class="adminx-container">
       <nav class="navbar navbar-expand justify-content-between fixed-top">
-        <a class="navbar-brand mb-0 h1 d-none d-md-block" href="index.html">
+        <a class="navbar-brand mb-0 h1 d-none d-md-block" href="{{route('admin.index')}}">
           <img src="./demo/img/logo.png" class="navbar-brand-image d-inline-block align-top mr-2" alt="">
            {{ request()->session()->get('user')->type }}! 
     {{ request()->session()->get('user')->Full_Name }}
@@ -30,6 +30,7 @@
               </div>
             </div>
             <input type="text" class="form-control" id="userid" placeholder="Type to search...">
+             
             <button onclick="window.location.href = 'https://w3docs.com';">Go</button>
           </div>
 
@@ -116,7 +117,7 @@
       <div class="adminx-sidebar expand-hover push">
         <ul class="sidebar-nav">
           <li class="sidebar-nav-item">
-            <a href="/AdminHome" class="sidebar-nav-link active">
+            <a href="{{route('admin.index')}}" class="sidebar-nav-link active">
               <span class="sidebar-nav-icon">
                 <i data-feather="home"></i>
               </span>
@@ -209,9 +210,9 @@
               </li>
 
                <li class="sidebar-nav-item">
-                <a href="AdminHome/changepass" class="sidebar-nav-link">
+                <a href="{{route('admin.changepass')}}" class="sidebar-nav-link">
                   <span class="sidebar-nav-abbr">
-                    An
+                    Cn
                   </span>
                   <span class="sidebar-nav-name">
                     Change Password
@@ -254,6 +255,9 @@
 
             @yield('table')
             @yield('addform')
+            @yield('editbody')
+            @yield('changepass')
+            @yield('analytics')
 
         
 <script type="text/javascript"  src="{{asset('js/jquery-3.4.1.js')}}"></script>

@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@index')->name('login.index');
 Route::post('/login', 'LoginController@login');
 Route::get('/logout', 'LogoutController@index')->name('logout.index');
-Route::get('/admin', 'AdminController@index')->name('admin.index');
+Route::get('/Admin', 'AdminController@index')->name('admin.index');
 
 
 Route::get('/Admin/student', 'AdminController@StudentList')->name('admin.student');
@@ -34,3 +34,24 @@ Route::get('/Admin/addnew1', 'AdminController@AddNew1')->name('admin.addnew1');
 Route::post('/Admin/addnew1', 'AdminController@InsertNew1')->name('admin.insertnew1');
 Route::get('/Admin/addnew2', 'AdminController@AddNew2')->name('admin.addnew2');
 Route::post('/Admin/addnew2', 'AdminController@InsertNew2')->name('admin.insertnew2');
+
+Route::get('/Admin/edit/{id}', 'AdminController@edit')->name('admin.edit');
+Route::post('/Admin/edit/{id}', 'AdminController@confirmedit');
+Route::get('/Admin/delete/{id}', 'AdminController@delete')->name('admin.delete');
+
+Route::post('/Admin/delete/{id}', 'AdminController@confirmdelete')->name('admin.confirmdelete');
+
+Route::get('/Admin/edit1/{id}', 'AdminController@edit1')->name('admin.edit1');
+Route::post('/Admin/edit1/{id}', 'AdminController@confirmedit1');
+Route::get('/Admin/delete1/{id}', 'AdminController@delete1')->name('admin.delete1');
+
+Route::post('/Admin/delete1/{id}', 'AdminController@confirmdelete1')->name('admin.confirmdelete1');
+
+
+Route::get('/Admin/edit2/{id}', 'AdminController@edit2')->name('admin.edit2');
+Route::post('/Admin/edit2/{id}', 'AdminController@confirmedit2');
+Route::get('/Admin/delete2/{id}', 'AdminController@delete2')->name('admin.delete2');
+
+Route::post('/Admin/delete2/{id}', 'AdminController@confirmdelete2')->name('admin.confirmdelete2');
+Route::get('/Admin/changepass', 'AdminController@changepass')->name('admin.changepass');
+Route::post('/Admin/changepass', 'AdminController@confirmpass');

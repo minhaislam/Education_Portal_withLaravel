@@ -31,7 +31,7 @@
             <input type="text" name="type" readonly value="teacher" class="form-control">
             <i class="zmdi zmdi-type"></i>
           </div>
-          <button>INSERT
+          <button class="btn btn-primary btn-lg active">INSERT
             <i class="zmdi zmdi-arrow-right"></i>
           </button>
         </form>
