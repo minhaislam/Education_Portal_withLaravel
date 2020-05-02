@@ -21,6 +21,10 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@index')->name('login.index');
 Route::post('/login', 'LoginController@login');
 Route::get('/logout', 'LogoutController@index')->name('logout.index');
+
+Route::group(['middleware'=> ['sess']], function(){
+
+
 Route::get('/Admin', 'AdminController@index')->name('admin.index');
 
 
@@ -55,3 +59,4 @@ Route::get('/Admin/delete2/{id}', 'AdminController@delete2')->name('admin.delete
 Route::post('/Admin/delete2/{id}', 'AdminController@confirmdelete2')->name('admin.confirmdelete2');
 Route::get('/Admin/changepass', 'AdminController@changepass')->name('admin.changepass');
 Route::post('/Admin/changepass', 'AdminController@confirmpass');
+});
