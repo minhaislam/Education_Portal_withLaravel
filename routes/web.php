@@ -59,4 +59,8 @@ Route::get('/Admin/delete2/{id}', 'AdminController@delete2')->name('admin.delete
 Route::post('/Admin/delete2/{id}', 'AdminController@confirmdelete2')->name('admin.confirmdelete2');
 Route::get('/Admin/changepass', 'AdminController@changepass')->name('admin.changepass');
 Route::post('/Admin/changepass', 'AdminController@confirmpass');
+
+Route::get('/Admin/studentprofile/{id}', 'AdminController@studentprofile')->name('admin.studentprofile');
+Route::get('/Admin/editprofile/{id}', 'AdminController@editprofile')->name('admin.editprofile');
+Route::post('/Admin/editprofile/{id}', 'AdminController@editconfirm');
 });

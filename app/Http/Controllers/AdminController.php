@@ -3,13 +3,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\user;
+use App\User_Profile;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
      public function index(){
-    	return view('Admin.index');
+         $counters = DB::table('users')
+    ->select('*', DB::raw('count(type) as total'))
+    ->groupBy('type')
+    ->get();
+    	return view('Admin.index',compact('counters'));
     }
 
      public function StudentList(){
@@ -87,6 +92,10 @@ public function InsertNew1(Request $req){
         //$register = DB::table('users')->insertGetId($validated);
                          
         if($register->save()){
+             $users = DB::table('users')
+                        ->where('user_id',$validated['user_id'])->pluck('id');
+                        //dd($users[0]);
+            $Addasforeign = User_Profile::firstOrCreate(['user_id' => $users[0]]);
             return redirect()->route('admin.student');
 
        }else{
@@ -114,6 +123,7 @@ public function InsertNew1(Request $req){
         //$register = DB::table('users')->insertGetId($validated);
                          
         if($register->save()){
+
             return redirect()->route('admin.teacher');
 
        }else{
@@ -238,6 +248,38 @@ public function edit1($id){
                         ->where('Full_Name',$req->Full_Name)
                         ->update(['password'=> $req->password ]);
         return redirect('/logout');  
+    }
+
+    public function studentprofile($id){
+
+        $user = DB::table('users')->find($id);  
+        $user_profile = DB::table('user_profiles')->where('user_id',$id)->first();
+        return view('Admin.studentprofile', ['user' => $user,'user_profile' => $user_profile]);   
+    }
+
+    public function editprofile($id){
+
+       
+        $user = DB::table('users')->where('id',$id)->first(); 
+         $user_profile = DB::table('user_profiles')->where('user_id',$id)->first();  
+       
+            return view('Admin.editprofile', ['user' => $user,'user_profile' => $user_profile]);  
+      
+        
+    }
+
+
+    public function editconfirm($id, Request $req){
+       $update= DB::table('user_profiles')
+            ->where('user_id', $id)
+            ->update(['email' => $req->email, 'phone' => $req->phone, 'address' => $req->address,'department' => $req->department,'cgpa' => $req->cgpa,'passing_year'=> $req->passing_year]);
+
+             if($update){
+            return redirect()->route('admin.studentprofile',[$id])->with('message','done');
+        }else{
+            return redirect()->route('admin.studentprofile',[$id])->with('message','Not done');
+        }
+
     }
 
 }

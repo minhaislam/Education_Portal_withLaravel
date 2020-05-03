@@ -21,14 +21,14 @@ class usersTableSeeder extends Seeder
 
         \App\user::create([
             'Full_name' => 'Tahmid Mahtab',
-            'user_id' => 'A33980',
+            'user_id' => 'S33980',
             'password' => '123123',
             'type' => 'student'
 
         ]);
         \App\user::create([
             'Full_name' => 'Habibul Amin',
-            'user_id' => 'A34044',
+            'user_id' => 'T34044',
             'password' => '111222',
             'type' => 'teacher'
 
