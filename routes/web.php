@@ -60,7 +60,9 @@ Route::post('/Admin/delete2/{id}', 'AdminController@confirmdelete2')->name('admi
 Route::get('/Admin/changepass', 'AdminController@changepass')->name('admin.changepass');
 Route::post('/Admin/changepass', 'AdminController@confirmpass');
 
-Route::get('/Admin/studentprofile/{id}', 'AdminController@studentprofile')->name('admin.studentprofile');
+Route::get('/Admin/profile/{id}', 'AdminController@profile')->name('admin.profile');
 Route::get('/Admin/editprofile/{id}', 'AdminController@editprofile')->name('admin.editprofile');
 Route::post('/Admin/editprofile/{id}', 'AdminController@editconfirm');
+
+Route::get('/Admin/searchresult', 'AdminController@search')->name('admin.searchresult');
 });

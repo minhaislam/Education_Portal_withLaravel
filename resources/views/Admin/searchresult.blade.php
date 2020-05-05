@@ -21,10 +21,8 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Admin <b>Details</b></h2></div>
-                    <div class="col-sm-4">
-                        <button onclick="window.location.href = '{{route('admin.addnew')}}';" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
-                    </div>
+                    <div class="col-sm-8"><h2>Search <b>result</b></h2></div>
+                  
                     
                     
                 </div>
@@ -33,8 +31,8 @@
                 <thead>
                     <tr>
                     	 <th>ID</th>
-                        <th>Admin Name</th>
-                        <th>Admin ID</th>
+                        <th>Student Name</th>
+                        <th>Student ID</th>
                         
                         <th>Password</th>
                          <th>Type</th>
@@ -42,21 +40,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                	@foreach($admins as $admin)
-			@if($admin->type == 'admin')
+                	@foreach($searchresult as $result)
+			@if(count($result)>0)
                 	
 		<tr>
-            <td>{{ $admin->id }}</td>
-			<td>{{ $admin->Full_Name }}</td>
-			<td>{{ $admin->user_id }}</td>
-			<td>{{ $admin->password }}</td>
-			<td>{{ $admin->type }}</td>
+            <td>{{ $result->id }}</td>
+			<td>{{ $result->Full_Name }}</td>
+			<td>{{ $result->user_id }}</td>
+			<td>{{ $result->password }}</td>
+			<td>{{ $result->type }}</td>
 			<td>
 				
-                            <a href="{{route('admin.edit', $admin->id)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="{{route('admin.delete', $admin->id)}}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <a href="{{route('admin.edit1', $result->id)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a href="{{route('admin.delete1', $result->id)}}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
 
-                             <a href="{{route('admin.profile', $admin->id)}}" class="profile" title="profile" data-toggle="tooltip"><i class="material-icons">&#xE815;</i></a>
+                             <a href="{{route('admin.profile', $result->id)}}" class="profile" title="profile" data-toggle="tooltip"><i class="material-icons">&#xE815;</i></a>
 			</td>
 		</tr>
 		@endif

@@ -250,11 +250,11 @@ public function edit1($id){
         return redirect('/logout');  
     }
 
-    public function studentprofile($id){
+    public function profile($id){
 
         $user = DB::table('users')->find($id);  
         $user_profile = DB::table('user_profiles')->where('user_id',$id)->first();
-        return view('Admin.studentprofile', ['user' => $user,'user_profile' => $user_profile]);   
+        return view('Admin.profile', ['user' => $user,'user_profile' => $user_profile]);   
     }
 
     public function editprofile($id){
@@ -272,14 +272,27 @@ public function edit1($id){
     public function editconfirm($id, Request $req){
        $update= DB::table('user_profiles')
             ->where('user_id', $id)
-            ->update(['email' => $req->email, 'phone' => $req->phone, 'address' => $req->address,'department' => $req->department,'cgpa' => $req->cgpa,'passing_year'=> $req->passing_year]);
+            ->update(['email' => $req->email, 'phone' => $req->phone, 'address' => $req->address,'department' => $req->department,'cgpa' => $req->cgpa,'passing_year'=> $req->passing_year,'eduction'=> $req->eduction]);
 
              if($update){
-            return redirect()->route('admin.studentprofile',[$id])->with('message','done');
+            return redirect()->route('admin.profile',[$id])->with('message','done');
         }else{
-            return redirect()->route('admin.studentprofile',[$id])->with('message','Not done');
+            return redirect()->route('admin.profile',[$id])->with('message','Not done');
         }
 
+    }
+
+    public function search(){
+        $data = user::orderBy('user_id', 'asc');
+
+        if (request()->value != '') {
+            $data->where('user_id', request()->value);
+           
+        }
+        
+        return view('admin.searchresult', ['searchresult' => $data->get() ]);
+       
+    
     }
 
 }

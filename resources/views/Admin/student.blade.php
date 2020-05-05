@@ -56,7 +56,7 @@
                             <a href="{{route('admin.edit1', $student->id)}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a href="{{route('admin.delete1', $student->id)}}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
 
-                             <a href="{{route('admin.studentprofile', $student->id)}}" class="profile" title="profile" data-toggle="tooltip"><i class="material-icons">&#xE815;</i></a>
+                             <a href="{{route('admin.profile', $student->id)}}" class="profile" title="profile" data-toggle="tooltip"><i class="material-icons">&#xE815;</i></a>
 			</td>
 		</tr>
 		@endif

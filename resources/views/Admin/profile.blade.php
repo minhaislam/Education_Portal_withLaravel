@@ -99,6 +99,7 @@
                                                 <p>{{$user_profile->address}}</p>
                                             </div>
                                         </div>
+                                        @if($user->type=='student' or $user->type=='teacher' )
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Department</label>
@@ -107,6 +108,8 @@
                                                 <p>{{$user_profile->department}}</p>
                                             </div>
                                         </div>
+                                        
+                                        @elseif($user->type=='student')
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>CGPA</label>
@@ -123,6 +126,17 @@
                                                 <p>{{$user_profile->passing_year}}</p>
                                             </div>
                                         </div>
+                                        
+                                        @elseif($user->type=='admin' or $user->type=='teacher' )
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>education</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{$user_profile->eduction}}</p>
+                                            </div>
+                                        </div>
+                                        @endif
                             </div>
                             </div>
                                         

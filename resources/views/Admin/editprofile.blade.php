@@ -35,24 +35,32 @@
             Address:<input type="text" name="address" value="{{$user_profile->address}}" class="form-control">
             <i class="zmdi zmdi-account"></i>
           </div>
+          @if($user->type=='student' or $user->type=='teacher')
          <div class="form-wrapper">
             Department:<input type="text" name="department" value="{{$user_profile->department}}" class="form-control">
             <i class="zmdi zmdi-account"></i>
           </div>
+          @elseif($user->type=='student')
           <div class="form-wrapper">
             CGPA:<input type="text" name="cgpa" value="{{$user_profile->cgpa}}" class="form-control">
             <i class="zmdi zmdi-account"></i>
           </div>
           <div class="form-wrapper">
             Passing Year:<input type="text" name="passing_year" value="{{$user_profile->passing_year}}" class="form-control">
-
+            </div>
+            
+            @elseif($user->type=='admin' or $user->type=='teacher')
+            <div class="form-wrapper">
+            Education:<input type="text" name="eduction" value="{{$user_profile->eduction}}" class="form-control">
+            </div>
+            @endif
           <div class="form-wrapper">
             User Id:<input type="text" name="user_id" value="{{$user_profile->user_id}}" class="form-control">
             <i class="zmdi zmdi-account"></i>
           </div>
 
        
-          <button>Update
+          <button class="btn btn-primary btn-lg active">Update
             <i class="zmdi zmdi-arrow-right"></i>
           </button>
         </form>

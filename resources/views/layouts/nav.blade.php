@@ -22,24 +22,25 @@
     {{ request()->session()->get('user')->Full_Name }}
         </a>
 
-        <form method="post" class="form-inline form-quicksearch d-none d-md-block mx-auto">
+        <form method="get" action="{{ route('admin.searchresult') }}" class="form-inline form-quicksearch d-none d-md-block mx-auto">
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-icon">
                 <i data-feather="search"></i> 
               </div>
             </div>
-            <input type="text" class="form-control" id="userid" placeholder="Type to search...">
-             
-            <button onclick="window.location.href = 'https://w3docs.com';">Go</button>
+            <input type="text" class="form-control" name="value" id="userid" placeholder="Type to search...">
+             <input type="submit" name="Go">
+            
           </div>
 
 
-          <div id="searchresult"> </div>
+          
         </form>
+        <div id="searchresult"> </div>
 
         <script type="text/javascript">
-      $(document).ready(function(){
+      /*$(document).ready(function(){
           
  $("#userid").keyup(function(){
           var userid= $("#userid").val();
@@ -54,7 +55,7 @@
     
   });
 
-});
+});*/
 
         </script>
 
