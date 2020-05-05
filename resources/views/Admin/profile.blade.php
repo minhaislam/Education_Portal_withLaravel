@@ -34,9 +34,15 @@
                             </ul>
                         </div>
                     </div>
+                    @if($user->id== request()->session()->get('user')->id)
                     <div class="col-md-2">
-                        <button  onclick="window.location.href = '/AdminHome';" type="button" class="btn btn-primary">Go Home</button>
+                        <button  onclick="window.location.href = '{{route('admin.index')}}';" type="button" class="btn btn-primary">Go Home</button>
                     </div>
+                    @else
+                    <div class="col-md-2">
+                        <button  onclick="window.location.href = '/Admin/{{$user->type}}';" type="button" class="btn btn-primary">Go Home</button>
+                    </div>
+                    @endif
                                         <div class="col-md-2">
                         <button  onclick="window.location.href = '{{route('admin.editprofile', $user->id)}}';" type="button" class="btn btn-primary">Edit</button>
                     </div>

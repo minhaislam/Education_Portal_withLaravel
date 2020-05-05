@@ -25,7 +25,7 @@ Route::get('/logout', 'LogoutController@index')->name('logout.index');
 Route::group(['middleware'=> ['sess']], function(){
 
 
-Route::get('/Admin', 'AdminController@index')->name('admin.index');
+Route::get('/Admin', 'AdminController@index')->name('admin.index')->middleware('type');
 
 
 Route::get('/Admin/student', 'AdminController@StudentList')->name('admin.student');

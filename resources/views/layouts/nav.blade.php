@@ -37,7 +37,6 @@
 
           
         </form>
-        <div id="searchresult"> </div>
 
         <script type="text/javascript">
       /*$(document).ready(function(){
@@ -103,7 +102,7 @@
               <img src="{{asset('images/myimage1.jpg')}}" class="d-inline-block align-top" alt="">
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="AdminHome/profile1">My Profile</a>
+              <a class="dropdown-item" href="{{route('admin.profile', request()->session()->get('user')->id)}}">My Profile</a>
              
              
               <div class="dropdown-divider"></div>

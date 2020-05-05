@@ -66,7 +66,7 @@
         </form>
 
          <div>
-          <a href="/AdminHome/admin" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return</a>| <a href="/logout" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Logout</a>
+          <a href="{{route('admin.profile', $user->id)}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return</a>| <a href="/logout" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Logout</a>
          
       </div>
       </div>
