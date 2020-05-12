@@ -26,16 +26,18 @@ class LoginController extends Controller
         
            
         	if($user->type=='admin'){
+                //dd($user);
         		 //print($countadmin);                 
                 return redirect()->route('admin.index');
         	}
-        	elseif($user->type=='scout'){   
+        	elseif($user->type=='teacher'){   
 
-                return redirect()->route('scout.index');
+                //return redirect()->route('scout.index');
         	}
-        	elseif($user->type=='user'){    
+        	elseif($user->type=='student'){    
                     
-                return redirect()->route('user.index');
+                //return redirect()->route('user.index');
+                print_r('Student pasge havent created');
         	}
             
         }else{
