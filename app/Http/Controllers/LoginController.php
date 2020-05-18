@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use App\Http\Requests\AccessValidtion;
 use App\user;
 use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
@@ -11,9 +13,9 @@ class LoginController extends Controller
     	return view('login.index');
     }
 
-    public function login(Request $req){
-        $user = user::Where('user_id', $req->user_id)
-        ->Where('password', $req->password)
+    public function login(AccessValidtion $req){
+        $user = user::Where('user_id', $req['user_id'])
+        ->Where('password', $req['password'])
         ->first();
     	
     	/*$user = DB::table('users')
@@ -33,9 +35,9 @@ class LoginController extends Controller
 
                 return redirect()->route('teacher.index');
         	}
-        	elseif($user->type=='user'){    
+        	elseif($user->type=='student'){    
                     
-                return redirect()->route('user.index');
+                return redirect()->route('student.index');
         	}
             
         }else{

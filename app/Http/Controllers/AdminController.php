@@ -55,7 +55,7 @@ class AdminController extends Controller
 
        $validated = $req->validate([
         'Full_Name'=>'required',
-            'user_id'=>'required',
+            'user_id'=>'required|unique:users',
             'password'=>'required',
             'type'=>'required',
     ]);
@@ -68,7 +68,11 @@ class AdminController extends Controller
         $register->type=$validated['type'];
         //$register = DB::table('users')->insertGetId($validated);
                          
-        if($register->save()){
+       if($register->save()){
+             $users = DB::table('users')
+                        ->where('user_id',$validated['user_id'])->pluck('id');
+                        //dd($users[0]);
+            $Addasforeign = User_Profile::firstOrCreate(['user_id' => $users[0]]);
             return redirect()->route('admin.admin');
 
        }else{
@@ -82,7 +86,7 @@ public function InsertNew1(Request $req){
 
        $validated = $req->validate([
         'Full_Name'=>'required',
-            'user_id'=>'required',
+            'user_id'=>'required|unique:users',
             'password'=>'required',
             'type'=>'required',
     ]);
@@ -113,7 +117,7 @@ public function InsertNew1(Request $req){
 
        $validated = $req->validate([
         'Full_Name'=>'required',
-            'user_id'=>'required',
+            'user_id'=>'required|unique:users',
             'password'=>'required',
             'type'=>'required',
     ]);
@@ -126,8 +130,11 @@ public function InsertNew1(Request $req){
         $register->type=$validated['type'];
         //$register = DB::table('users')->insertGetId($validated);
                          
-        if($register->save()){
-
+       if($register->save()){
+             $users = DB::table('users')
+                        ->where('user_id',$validated['user_id'])->pluck('id');
+                        //dd($users[0]);
+            $Addasforeign = User_Profile::firstOrCreate(['user_id' => $users[0]]);
             return redirect()->route('admin.teacher');
 
        }else{
@@ -262,7 +269,7 @@ public function edit1($id){
     }
 
     public function editprofile($id){
-
+    	
        
         $user = DB::table('users')->where('id',$id)->first(); 
          $user_profile = DB::table('user_profiles')->where('user_id',$id)->first();  
@@ -274,9 +281,13 @@ public function edit1($id){
 
 
     public function editconfirm($id, Request $req){
+
+    	 $validated = $req->validate([      	
+            'email'=>'required|unique:user_profiles',
+    ]);
        $update= DB::table('user_profiles')
             ->where('user_id', $id)
-            ->update(['email' => $req->email, 'phone' => $req->phone, 'address' => $req->address,'department' => $req->department,'cgpa' => $req->cgpa,'passing_year'=> $req->passing_year,'eduction'=> $req->eduction]);
+            ->update(['email' => $validated['email'], 'phone' => $req->phone, 'address' => $req->address,'department' => $req->department,'cgpa' => $req->cgpa,'passing_year'=> $req->passing_year,'eduction'=> $req->eduction]);
 
              if($update){
             return redirect()->route('admin.profile',[$id])->with('message','done');
