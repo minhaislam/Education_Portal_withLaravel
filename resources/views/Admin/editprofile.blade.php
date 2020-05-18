@@ -16,6 +16,9 @@
       <div class="inner">
       
         <form method="post">
+          @foreach($errors->all() as $error)
+  <li>{{$error}}</li>
+  @endforeach
           <h3>Edit Info</h3>
           <input type="hidden" name="_token" value="{{csrf_token()}}">
            <div class="form-wrapper">

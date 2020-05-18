@@ -21,11 +21,13 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@index')->name('login.index');
 Route::post('/login', 'LoginController@login');
 Route::get('/logout', 'LogoutController@index')->name('logout.index');
-
+Route::get('/ForgetPass', 'ForgetPassController@index');
+Route::post('/ForgetPass', 'ForgetPassController@submit');
+Route::get('/ForgetPass/password/{id}', 'ForgetPassController@password')->name('forgetpass.newpass');
 Route::group(['middleware'=> ['sess']], function(){
 
 
-Route::get('/Admin', 'AdminController@index')->name('admin.index');
+Route::get('/Admin', 'AdminController@index')->name('admin.index')->middleware('type');
 Route::get('/Admin/student', 'AdminController@StudentList')->name('admin.student');
 Route::get('/Admin/teacher', 'AdminController@TeacherList')->name('admin.teacher');
 Route::get('/Admin/admin', 'AdminController@AdminList')->name('admin.admin');
