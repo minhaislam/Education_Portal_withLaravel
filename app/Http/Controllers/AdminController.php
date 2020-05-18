@@ -51,7 +51,7 @@ class AdminController extends Controller
 
        $validated = $req->validate([
         'Full_Name'=>'required',
-            'user_id'=>'required',
+            'user_id'=>'required|unique:users',
             'password'=>'required',
             'type'=>'required',
     ]);
@@ -78,7 +78,7 @@ public function InsertNew1(Request $req){
 
        $validated = $req->validate([
         'Full_Name'=>'required',
-            'user_id'=>'required',
+            'user_id'=>'required|unique:users',
             'password'=>'required',
             'type'=>'required',
     ]);
@@ -109,7 +109,7 @@ public function InsertNew1(Request $req){
 
        $validated = $req->validate([
         'Full_Name'=>'required',
-            'user_id'=>'required',
+            'user_id'=>'required|unique:users',
             'password'=>'required',
             'type'=>'required',
     ]);
