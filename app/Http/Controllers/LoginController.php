@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Validator;
-use App\Http\Requests\AccessValidtion;
 use App\user;
 use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
@@ -13,9 +11,9 @@ class LoginController extends Controller
     	return view('login.index');
     }
 
-    public function login(AccessValidtion $req){
-        $user = user::Where('user_id', $req['user_id'])
-        ->Where('password', $req['password'])
+    public function login(Request $req){
+        $user = user::Where('user_id', $req->user_id)
+        ->Where('password', $req->password)
         ->first();
     	
     	/*$user = DB::table('users')
@@ -28,18 +26,16 @@ class LoginController extends Controller
         
            
         	if($user->type=='admin'){
-                //dd($user);
         		 //print($countadmin);                 
                 return redirect()->route('admin.index');
         	}
         	elseif($user->type=='teacher'){   
 
-                //return redirect()->route('scout.index');
+                return redirect()->route('teacher.index');
         	}
-        	elseif($user->type=='student'){    
+        	elseif($user->type=='user'){    
                     
-                //return redirect()->route('user.index');
-                print_r('Student pasge havent created');
+                return redirect()->route('user.index');
         	}
             
         }else{

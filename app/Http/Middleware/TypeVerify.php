@@ -16,7 +16,7 @@ class TypeVerify
     public function handle($request, Closure $next)
     {
         
-            if (strtolower($request->path()) !== $request->session()->get('user')->type) {
+            if ($request->path() !== $request->session()->get('user')->type) {
             return redirect()
                 ->back();
         }

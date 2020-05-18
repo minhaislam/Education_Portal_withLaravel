@@ -10,11 +10,6 @@
 @endsection
 @section('addform')
 <div class="inner">
-
-@foreach($errors->all() as $error)
-  <li>{{$error}}</li>
-  @endforeach
-
       
         <form method="post">
           <h3>Register Student</h3>

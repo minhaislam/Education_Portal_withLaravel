@@ -16,7 +16,6 @@
 <title>Education  Portal</title>
 	<center>
 	<div class="loginbox">
-		<div>@yield('error')</div>
         <h2 class="log">Education Portal</h2>
         <form method="post">
         	<input type="hidden" name="_token" value="{{csrf_token()}}">

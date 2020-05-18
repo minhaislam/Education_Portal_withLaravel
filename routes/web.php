@@ -25,9 +25,7 @@ Route::get('/logout', 'LogoutController@index')->name('logout.index');
 Route::group(['middleware'=> ['sess']], function(){
 
 
-Route::get('/Admin', 'AdminController@index')->name('admin.index')->middleware('type');
-
-
+Route::get('/Admin', 'AdminController@index')->name('admin.index');
 Route::get('/Admin/student', 'AdminController@StudentList')->name('admin.student');
 Route::get('/Admin/teacher', 'AdminController@TeacherList')->name('admin.teacher');
 Route::get('/Admin/admin', 'AdminController@AdminList')->name('admin.admin');
@@ -65,4 +63,13 @@ Route::get('/Admin/editprofile/{id}', 'AdminController@editprofile')->name('admi
 Route::post('/Admin/editprofile/{id}', 'AdminController@editconfirm');
 
 Route::get('/Admin/searchresult', 'AdminController@search')->name('admin.searchresult');
+
+//Teacher
+
+Route::get('teacher/', 'TeacherController@index')->name('teacher.index');
+Route::resource('teacher/students','StudentsController',['as'=>'teacher']);
+Route::resource('teacher/courses','CoursesController',['as'=>'teacher']);
+Route::resource('teacher/notices','NoticesController',['as'=>'teacher']);
+Route::resource('teacher/notes','NotesController',['as'=>'teacher']);
+Route::resource('teacher/profile','ProfileController',['as'=>'teacher']);
 });

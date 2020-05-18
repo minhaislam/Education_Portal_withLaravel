@@ -3,6 +3,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\user;
+use App\Students;
+use App\Notes;
+use App\Notices;
+use App\Courses;
 use App\User_Profile;
 use Validator;
 use Illuminate\Support\Facades\DB;
@@ -51,7 +55,7 @@ class AdminController extends Controller
 
        $validated = $req->validate([
         'Full_Name'=>'required',
-            'user_id'=>'required|unique:users',
+            'user_id'=>'required',
             'password'=>'required',
             'type'=>'required',
     ]);
@@ -78,7 +82,7 @@ public function InsertNew1(Request $req){
 
        $validated = $req->validate([
         'Full_Name'=>'required',
-            'user_id'=>'required|unique:users',
+            'user_id'=>'required',
             'password'=>'required',
             'type'=>'required',
     ]);
@@ -109,7 +113,7 @@ public function InsertNew1(Request $req){
 
        $validated = $req->validate([
         'Full_Name'=>'required',
-            'user_id'=>'required|unique:users',
+            'user_id'=>'required',
             'password'=>'required',
             'type'=>'required',
     ]);
